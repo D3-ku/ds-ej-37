@@ -22,7 +22,7 @@ class Libro {
         public static function obtenerTodas() {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('SELECT id, titulo, autor, anio_publicacion, cantidad_paginas FROM libros ORDER BY id DESC');
+            $stmt = $db->prepare('SELECT id, titulo, autor, anioPublicacion, cantidadPaginas FROM libros ORDER BY id DESC');
             $stmt->execute();
             
             // PDO mapea automáticamente las columnas a las propiedades de la clase
@@ -40,7 +40,7 @@ class Libro {
     public static function obtenerPorId($id) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('SELECT id, titulo, autor, anio_publicacion, cantidad_paginas FROM libros WHERE id = :id');
+            $stmt = $db->prepare('SELECT id, titulo, autor, anioPublicacion, cantidadPaginas FROM libros WHERE id = :id');
             $stmt->execute([':id' => $id]);
             
             // PDO mapea automáticamente las columnas a las propiedades de la clase
@@ -51,16 +51,16 @@ class Libro {
             return null;
         }
     }
-    public static function agregar($titulo, $autor, $anio_publicacion, $cantidad_paginas) {
+    public static function agregar($titulo, $autor, $anioPublicacion, $cantidadPaginas) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('INSERT INTO libros (titulo, autor, anio_publicacion, cantidad_paginas) VALUES (:titulo, :autor, :anio_publicacion, :cantidad_paginas)');
+            $stmt = $db->prepare('INSERT INTO libros (titulo, autor, anioPublicacion, cantidadPaginas) VALUES (:titulo, :autor, :anioPublicacion, :cantidadPaginas)');
             
             return $stmt->execute([
                 ':titulo' => $titulo,
                 ':autor' => $autor,
-                ':anio_publicacion' => $anio_publicacion,
-                ':cantidad_paginas' => $cantidad_paginas
+                ':anioPublicacion' => $anioPublicacion,
+                ':cantidadPaginas' => $cantidadPaginas
             ]);
         } catch (PDOException $e) {
             error_log("Error al agregar libro: " . $e->getMessage());
@@ -71,17 +71,17 @@ class Libro {
     /**
      * Editar un libro existente
      */
-    public static function editar($id, $titulo, $autor, $anio_publicacion, $cantidad_paginas) {
+    public static function editar($id, $titulo, $autor, $anioPublicacion, $cantidadPaginas) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('UPDATE libros SET titulo = :titulo, autor = :autor, anio_publicacion = :anio_publicacion, cantidad_paginas = :cantidad_paginas WHERE id = :id');
+            $stmt = $db->prepare('UPDATE libros SET titulo = :titulo, autor = :autor, anioPublicacion = :anioPublicacion, cantidadPaginas = :cantidadPaginas WHERE id = :id');
             
             return $stmt->execute([
                 ':id' => $id,
                 ':titulo' => $titulo,
                 ':autor' => $autor,
-                ':anio_publicacion' => $anio_publicacion,
-                ':cantidad_paginas' => $cantidad_paginas
+                ':anioPublicacion' => $anioPublicacion,
+                ':cantidadPaginas' => $cantidadPaginas
             ]);
         } catch (PDOException $e) {
             error_log("Error al editar libro: " . $e->getMessage());

@@ -9,8 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $Id = $_POST['Id'] ?? '';
     $CantidadPaginas = $_POST['CantidadPaginas'] ?? '';
 
-    $edad = $_POST['edad'] ?? '';
-    $id = $_POST['id'] ?? '';
+    $Id = $_POST['id'] ?? '';
 
     if ($accion === 'agregar') {
         Libro::agregar($Titulo, $Autor, $AnioPublicacion, $CantidadPaginas);
