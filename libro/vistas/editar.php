@@ -1,19 +1,8 @@
-<?php require_once '../../modelo/persona.php'; 
-require_once '../../modelo/profesion.php';
+<?php require_once '../../modelo/libro.php'; 
 $id = $_GET['id'] ?? null;
-$persona = $id ? Persona::obtenerPorId($id) : null;
-$titulo = $persona ? 'Editar Persona' : 'Agregar Persona';
-$accion = $persona ? 'editar' : 'agregar';
-$errorProfesiones = null;
-try {
-    $profesiones = Profesion::obtenerTodas();
-    if (!$profesiones) {
-        $errorProfesiones = 'No hay profesiones disponibles. Cargue las profesiones en la base de datos antes de guardar.';
-    }
-} catch (PDOException $e) {
-    $profesiones = [];
-    $errorProfesiones = 'No se pudieron cargar las profesiones. Intente nuevamente.';
-}
+$libro = $id ? Libro::obtenerPorId($id) : null;
+$titulo = $libro ? 'Editar Libro' : 'Agregar Libro';
+$accion = $libro ? 'editar' : 'agregar';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,48 +16,33 @@ try {
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <h1><?php echo $titulo; ?></h1>
-                <?php if ($errorProfesiones): ?>
-                <div class="alert alert-danger" role="alert"><?php echo $errorProfesiones; ?></div>
-                <?php endif; ?>
-
+              
                 <form method="POST" action="../acciones.php">
                     <input type="hidden" name="accion" value="<?php echo $accion; ?>">
-                    <?php if ($persona): ?>
-                    <input type="hidden" name="id" value="<?php echo $persona->id; ?>">
+                    <?php if ($libro): ?>
+                    <input type="hidden" name="id" value="<?php echo $libro->id; ?>">
                     <?php endif; ?>
 
                     <div class="mb-3">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" value="<?php echo $persona ? $persona->nombre : ''; ?>" required>
+                        <label class="form-label">Título</label>
+                        <input type="text" class="form-control" name="titulo" value="<?php echo $libro ? $libro->titulo : ''; ?>" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" value="<?php echo $persona ? $persona->email : ''; ?>" required>
+                        <label class="form-label">Autor</label>
+                        <input type="text" class="form-control" name="autor" value="<?php echo $libro ? $libro->autor : ''; ?>" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Edad</label>
-                        <input type="number" class="form-control" name="edad" value="<?php echo $persona ? $persona->edad : ''; ?>" required>
+                        <label class="form-label">Año de Publicación</label>
+                        <input type="number" class="form-control" name="anio_publicacion" value="<?php echo $libro ? $libro->anio_publicacion : ''; ?>" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="profesion_id" class="form-label">Profesión</label>
-                        <select id="profesion_id" name="profesion_id" class="form-select" required <?php echo $errorProfesiones ? 'disabled' : ''; ?>>
-                            <option value="" disabled <?php echo $persona ? '' : 'selected'; ?>>Seleccione una profesión</option>
-                            <?php foreach ($profesiones as $profesion): ?>
-                            <option value="<?php echo $profesion->id; ?>" <?php echo $persona && (int) $persona->profesion_id === (int) $profesion->id ? 'selected' : ''; ?>>
-                                <?php echo htmlspecialchars($profesion->nombre, ENT_QUOTES, 'UTF-8'); ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
+                        <label class="form-label">Cantidad de Páginas</label>
+                        <input type="number" class="form-control" name="cantidad_paginas" value="<?php echo $libro ? $libro->cantidad_paginas : ''; ?>" required>
                     </div>
 
-                    <div class="d-grid gap-2 d-sm-flex">
-                        <button type="submit" class="btn btn-primary" <?php echo $errorProfesiones ? 'disabled' : ''; ?>>Guardar</button>
-                        <a href="listar.php" class="btn btn-secondary">Cancelar</a>
-                    </div>
                 </form>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <?php
-require_once '../modelo/persona.php';
+require_once '../modelo/libro.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accion = $_POST['accion'] ?? '';
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $CantidadPaginas = $_POST['CantidadPaginas'] ?? '';
 
     if ($accion === 'agregar') {
-        if (!Persona::agregar($Titulo, $Autor, $AnioPublicacion, $CantidadPaginas)) {
+        if (!Libro::agregar($Titulo, $Autor, $AnioPublicacion, $CantidadPaginas)) {
             http_response_code(500);
             exit('No se pudo agregar el libro. Revise los datos e intente nuevamente.');
         }
@@ -19,16 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($accion === 'editar') {
-        if (!Persona::editar($id, $nombre, $email, $edad, $profesion_id)) {
+        if (!Libro::editar($id, $Titulo, $Autor, $AnioPublicacion, $CantidadPaginas)) {
             http_response_code(500);
-            exit('No se pudo editar la persona. Revise los datos e intente nuevamente.');
+            exit('No se pudo editar el libro. Revise los datos e intente nuevamente.');
         }
         header('Location: vistas/listar.php');
         exit;
     }
 
     if ($accion === 'eliminar') {
-        Persona::eliminar($id);
+        Libro::eliminar($id);
         header('Location: vistas/listar.php');
         exit;
     }
