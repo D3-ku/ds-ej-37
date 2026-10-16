@@ -10,7 +10,6 @@ class Persona {
     public $Autor;
     public $AnioPublicacion;
     public $CantidadPaginas;
-    public $profesion = null;
 
     public function __construct() {
         // Constructor vacío para que FETCH_CLASS funcione correctamente
@@ -19,8 +18,7 @@ class Persona {
     // Consulta la relacion al navegarla y reutiliza el objeto mientras conserve el mismo ID.
     public function getProfesion() {
         if ($this->profesion !== null && (int) $this->profesion->id === (int) $this->profesion_id) {
-            return $this->profesion;
-        }
+        
         $profesion = Profesion::obtenerPorId($this->profesion_id);
         if (!$profesion) {
             $mensaje = "No se encontro la profesion de la persona con ID " . $this->id;

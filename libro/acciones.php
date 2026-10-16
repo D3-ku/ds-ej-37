@@ -1,19 +1,18 @@
 <?php
 require_once '../modelo/persona.php';
-require_once '../modelo/profesion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accion = $_POST['accion'] ?? '';
-    $nombre = $_POST['nombre'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $edad = $_POST['edad'] ?? '';
+    $Titulo = $_POST['Titulo'] ?? '';
+    $Autor = $_POST['Autor'] ?? '';
+    $AnioPublicacion = $_POST['AnioPublicacion'] ?? '';
     $id = $_POST['id'] ?? '';
-    $profesion_id = $_POST['profesion_id'] ?? '';
+    $CantidadPaginas = $_POST['CantidadPaginas'] ?? '';
 
     if ($accion === 'agregar') {
-        if (!Persona::agregar($nombre, $email, $edad, $profesion_id)) {
+        if (!Persona::agregar($Titulo, $Autor, $AnioPublicacion, $CantidadPaginas)) {
             http_response_code(500);
-            exit('No se pudo agregar la persona. Revise los datos e intente nuevamente.');
+            exit('No se pudo agregar el libro. Revise los datos e intente nuevamente.');
         }
         header('Location: vistas/listar.php');
         exit;
