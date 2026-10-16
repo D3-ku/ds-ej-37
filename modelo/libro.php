@@ -15,7 +15,6 @@ class libro {
     }
 
     // Consulta la relacion al navegarla y reutiliza el objeto mientras conserve el mismo ID.
-
     /**
      * Agregar un nuevo libro
      */
