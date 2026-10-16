@@ -3,13 +3,13 @@ require_once __DIR__ . '/../core/Database.php';
 require_once __DIR__ . '/profesion.php';
 
 class Persona {
-    private const NOMBRE_CLASE = 'Persona';
+    private const NOMBRE_CLASE = 'Libro';
     
-    public $id;
-    public $nombre;
-    public $email;
-    public $edad;
-    public $profesion_id;
+    public $Id;
+    public $Titulo;
+    public $Autor;
+    public $AnioPublicacion;
+    public $CantidadPaginas;
     public $profesion = null;
 
     public function __construct() {
