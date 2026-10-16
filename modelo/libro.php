@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../core/Database.php';
 
-class libro {
+class Libro {
     private const NOMBRE_CLASE = 'Libro';
     
     public $Id;

@@ -6,29 +6,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $Titulo = $_POST['Titulo'] ?? '';
     $Autor = $_POST['Autor'] ?? '';
     $AnioPublicacion = $_POST['AnioPublicacion'] ?? '';
-    $id = $_POST['id'] ?? '';
+    $Id = $_POST['Id'] ?? '';
     $CantidadPaginas = $_POST['CantidadPaginas'] ?? '';
 
+    $edad = $_POST['edad'] ?? '';
+    $id = $_POST['id'] ?? '';
+
     if ($accion === 'agregar') {
-        if (!Libro::agregar($Titulo, $Autor, $AnioPublicacion, $CantidadPaginas)) {
-            http_response_code(500);
-            exit('No se pudo agregar el libro. Revise los datos e intente nuevamente.');
-        }
+        Libro::agregar($Titulo, $Autor, $AnioPublicacion, $CantidadPaginas);
         header('Location: vistas/listar.php');
         exit;
     }
 
     if ($accion === 'editar') {
-        if (!Libro::editar($id, $Titulo, $Autor, $AnioPublicacion, $CantidadPaginas)) {
-            http_response_code(500);
-            exit('No se pudo editar el libro. Revise los datos e intente nuevamente.');
-        }
+        Libro::editar($Id, $Titulo, $Autor, $AnioPublicacion, $CantidadPaginas);
         header('Location: vistas/listar.php');
         exit;
     }
 
     if ($accion === 'eliminar') {
-        Libro::eliminar($id);
+        Libro::eliminar($Id);
         header('Location: vistas/listar.php');
         exit;
     }

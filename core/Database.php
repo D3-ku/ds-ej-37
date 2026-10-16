@@ -10,7 +10,7 @@ class Database {
 
     // Credenciales de BD
     private $host = 'localhost';
-    private $db_name = 'arq_2026';
+    private $db_name = 'libros';
     private $user = 'root';
     private $password = '';
     private $charset = 'utf8mb4';

@@ -35,14 +35,14 @@
                     <td><?php echo $l->id; ?></td>
                     <td><?php echo $l->titulo; ?></td>
                     <td><?php echo $l->autor; ?></td>
-                    <td><?php echo $l->anio_publicacion; ?></td>
-                    <td><?php echo $l->cantidad_paginas; ?></td>
+                    <td><?php echo $l->anioPublicacion; ?></td>
+                    <td><?php echo $l->cantidadPaginas; ?></td>
                     <td>
                         <a href="ver.php?id=<?php echo $l->id; ?>" class="btn btn-sm btn-primary">Ver</a>
                         <a href="editar.php?id=<?php echo $l->id; ?>" class="btn btn-sm btn-warning">Editar</a>
                         <form method="POST" action="../acciones.php" style="display:inline;">
                             <input type="hidden" name="accion" value="eliminar">
-                            <input type="hidden" name="id" value="<?php echo $l->id; ?>">
+                            <input type="hidden" name="Id" value="<?php echo $l->id; ?>">
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro?')">Eliminar</button>
                         </form>
                     </td>

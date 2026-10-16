@@ -22,8 +22,8 @@ $libro = $id ? Libro::obtenerPorId($id) : null;
                         <p><strong>ID:</strong> <?php echo $libro->id; ?></p>
                         <p><strong>Título:</strong> <?php echo $libro->titulo; ?></p>
                         <p><strong>Autor:</strong> <?php echo $libro->autor; ?></p>
-                        <p><strong>Año de Publicación:</strong> <?php echo $libro->anio_publicacion; ?></p>
-                        <p><strong>Cantidad de Páginas:</strong> <?php echo $libro->cantidad_paginas; ?></p>
+                        <p><strong>Año de Publicación:</strong> <?php echo $libro->anioPublicacion; ?></p>
+                        <p><strong>Cantidad de Páginas:</strong> <?php echo $libro->cantidadPaginas; ?></p>
                     </div>
                 </div>
 
