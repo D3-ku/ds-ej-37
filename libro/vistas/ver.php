@@ -19,17 +19,17 @@ $libro = $id ? Libro::obtenerPorId($id) : null;
                 <?php if ($libro): ?>
                 <div class="card">
                     <div class="card-body">
-                        <p><strong>ID:</strong> <?php echo $libro->id; ?></p>
-                        <p><strong>Título:</strong> <?php echo $libro->titulo; ?></p>
-                        <p><strong>Autor:</strong> <?php echo $libro->autor; ?></p>
-                        <p><strong>Año de Publicación:</strong> <?php echo $libro->anioPublicacion; ?></p>
-                        <p><strong>Cantidad de Páginas:</strong> <?php echo $libro->cantidadPaginas; ?></p>
+                        <p><strong>ID:</strong> <?php echo $libro->Id; ?></p>
+                        <p><strong>Título:</strong> <?php echo $libro->Titulo; ?></p>
+                        <p><strong>Autor:</strong> <?php echo $libro->Autor; ?></p>
+                        <p><strong>Año de Publicación:</strong> <?php echo $libro->AnioPublicacion; ?></p>
+                        <p><strong>Cantidad de Páginas:</strong> <?php echo $libro->CantidadPaginas; ?></p>
                     </div>
                 </div>
 
                 <div class="mt-3">
                     <a href="listar.php" class="btn btn-secondary">Volver</a>
-                    <a href="editar.php?id=<?php echo $libro->id; ?>" class="btn btn-warning">Editar</a>
+                    <a href="editar.php?id=<?php echo $libro->Id; ?>" class="btn btn-warning">Editar</a>
                 </div>
                 <?php else: ?>
                 <div class="alert alert-danger">Libro no encontrado</div>

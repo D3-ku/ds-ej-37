@@ -21,7 +21,7 @@
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+                    <th>Id</th>
                     <th>Título</th>
                     <th>Autor</th>
                     <th>Año de Publicación</th>
@@ -32,17 +32,17 @@
             <tbody>
                 <?php $libros = Libro::obtenerTodas(); foreach ($libros as $l): ?>
                 <tr>
-                    <td><?php echo $l->id; ?></td>
-                    <td><?php echo $l->titulo; ?></td>
-                    <td><?php echo $l->autor; ?></td>
-                    <td><?php echo $l->anioPublicacion; ?></td>
-                    <td><?php echo $l->cantidadPaginas; ?></td>
+                    <td><?php echo $l->Id; ?></td>
+                    <td><?php echo $l->Titulo; ?></td>
+                    <td><?php echo $l->Autor; ?></td>
+                    <td><?php echo $l->AnioPublicacion; ?></td>
+                    <td><?php echo $l->CantidadPaginas; ?></td>
                     <td>
-                        <a href="ver.php?id=<?php echo $l->id; ?>" class="btn btn-sm btn-primary">Ver</a>
-                        <a href="editar.php?id=<?php echo $l->id; ?>" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="ver.php?id=<?php echo $l->Id; ?>" class="btn btn-sm btn-primary">Ver</a>
+                        <a href="editar.php?id=<?php echo $l->Id; ?>" class="btn btn-sm btn-warning">Editar</a>
                         <form method="POST" action="../acciones.php" style="display:inline;">
                             <input type="hidden" name="accion" value="eliminar">
-                            <input type="hidden" name="Id" value="<?php echo $l->id; ?>">
+                            <input type="hidden" name="Id" value="<?php echo $l->Id; ?>">
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro?')">Eliminar</button>
                         </form>
                     </td>

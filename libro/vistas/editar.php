@@ -22,27 +22,27 @@ $accion = $libro ? 'editar' : 'agregar';
                 <form method="POST" action="../acciones.php">
                     <input type="hidden" name="accion" value="<?php echo $accion; ?>">
                     <?php if ($libro): ?>
-                        <input type="hidden" name="Id" value="<?php echo $libro->id; ?>">
+                        <input type="hidden" name="Id" value="<?php echo $libro->Id; ?>">
                     <?php endif; ?>
 
                     <div class="mb-3">
                         <label class="form-label">Título</label>
-                        <input type="text" class="form-control" name="Titulo" value="<?php echo $libro ? $libro->titulo : ''; ?>" required>
+                        <input type="text" class="form-control" name="Titulo" value="<?php echo $libro ? $libro->Titulo : ''; ?>" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Autor</label>
-                        <input type="text" class="form-control" name="Autor" value="<?php echo $libro ? $libro->autor : ''; ?>" required>
+                        <input type="text" class="form-control" name="Autor" value="<?php echo $libro ? $libro->Autor : ''; ?>" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Año de Publicación</label>
-                        <input type="number" class="form-control" name="AnioPublicacion" value="<?php echo $libro ? $libro->anioPublicacion : ''; ?>" required>
+                        <input type="text" class="form-control" name="AnioPublicacion" value="<?php echo $libro ? $libro->AnioPublicacion : ''; ?>" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Cantidad de Páginas</label>
-                        <input type="number" class="form-control" name="CantidadPaginas" value="<?php echo $libro ? $libro->cantidadPaginas : ''; ?>" required>
+                        <input type="number" class="form-control" name="CantidadPaginas" value="<?php echo $libro ? $libro->CantidadPaginas : ''; ?>" required>
                     </div>
                     <div class="d-grid gap-2 d-sm-flex">
                         <button type="submit" class="btn btn-primary">Guardar</button>

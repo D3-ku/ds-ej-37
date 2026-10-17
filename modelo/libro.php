@@ -22,7 +22,7 @@ class Libro {
         public static function obtenerTodas() {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('SELECT id, titulo, autor, anioPublicacion, cantidadPaginas FROM libros ORDER BY id DESC');
+            $stmt = $db->prepare('SELECT Id, Titulo, Autor, AnioPublicacion, CantidadPaginas FROM libros ORDER BY Id DESC');
             $stmt->execute();
             
             // PDO mapea automáticamente las columnas a las propiedades de la clase
@@ -37,11 +37,11 @@ class Libro {
      * Obtener un libro por ID
      * Usando FETCH_CLASS para mapear automáticamente a objeto Libro (ORM)
      */
-    public static function obtenerPorId($id) {
+    public static function obtenerPorId($Id) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('SELECT id, titulo, autor, anioPublicacion, cantidadPaginas FROM libros WHERE id = :id');
-            $stmt->execute([':id' => $id]);
+            $stmt = $db->prepare('SELECT Id, Titulo, Autor, AnioPublicacion, CantidadPaginas FROM libros WHERE Id = :id');
+            $stmt->execute([':id' => $Id]);
             
             // PDO mapea automáticamente las columnas a las propiedades de la clase
             $stmt->setFetchMode(PDO::FETCH_CLASS, self::NOMBRE_CLASE);
@@ -51,16 +51,16 @@ class Libro {
             return null;
         }
     }
-    public static function agregar($titulo, $autor, $anioPublicacion, $cantidadPaginas) {
+    public static function agregar($Titulo, $Autor, $AnioPublicacion, $CantidadPaginas) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('INSERT INTO libros (titulo, autor, anioPublicacion, cantidadPaginas) VALUES (:titulo, :autor, :anioPublicacion, :cantidadPaginas)');
+            $stmt = $db->prepare('INSERT INTO libros (Titulo, Autor, AnioPublicacion, CantidadPaginas) VALUES (:titulo, :autor, :anioPublicacion, :cantidadPaginas)');
             
             return $stmt->execute([
-                ':titulo' => $titulo,
-                ':autor' => $autor,
-                ':anioPublicacion' => $anioPublicacion,
-                ':cantidadPaginas' => $cantidadPaginas
+                ':titulo' => $Titulo,
+                ':autor' => $Autor,
+                ':anioPublicacion' => $AnioPublicacion,
+                ':cantidadPaginas' => $CantidadPaginas
             ]);
         } catch (PDOException $e) {
             error_log("Error al agregar libro: " . $e->getMessage());
@@ -71,17 +71,18 @@ class Libro {
     /**
      * Editar un libro existente
      */
-    public static function editar($id, $titulo, $autor, $anioPublicacion, $cantidadPaginas) {
-        try {
+    public static function editar($Id, $Titulo, $Autor, $AnioPublicacion, $CantidadPaginas) {
+    var_dump($Id, $Titulo, $Autor, $AnioPublicacion, $CantidadPaginas); // Debugging line    
+    try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('UPDATE libros SET titulo = :titulo, autor = :autor, anioPublicacion = :anioPublicacion, cantidadPaginas = :cantidadPaginas WHERE id = :id');
+            $stmt = $db->prepare('UPDATE libros SET Titulo = :titulo, Autor = :autor, AnioPublicacion = :anioPublicacion, CantidadPaginas = :cantidadPaginas WHERE Id = :id');
             
             return $stmt->execute([
-                ':id' => $id,
-                ':titulo' => $titulo,
-                ':autor' => $autor,
-                ':anioPublicacion' => $anioPublicacion,
-                ':cantidadPaginas' => $cantidadPaginas
+                ':id' => $Id,
+                ':titulo' => $Titulo,
+                ':autor' => $Autor,
+                ':anioPublicacion' => $AnioPublicacion,
+                ':cantidadPaginas' => $CantidadPaginas
             ]);
         } catch (PDOException $e) {
             error_log("Error al editar libro: " . $e->getMessage());
@@ -92,12 +93,12 @@ class Libro {
     /**
      * Eliminar un libro
      */
-    public static function eliminar($id) {
+    public static function eliminar($Id) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('DELETE FROM libros WHERE id = :id');
+            $stmt = $db->prepare('DELETE FROM libros WHERE Id = :id');
             
-            return $stmt->execute([':id' => $id]);
+            return $stmt->execute([':id' => $Id]);
         } catch (PDOException $e) {
             error_log("Error al eliminar libro: " . $e->getMessage());
             return false;
